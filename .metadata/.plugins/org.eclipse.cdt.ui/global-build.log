@@ -1,0 +1,5 @@
+14:55:30 **** Incremental Build of configuration Debug for project Print_Output ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Print_Output.o "..\\Print_Output.c" 
+gcc -o Print_Output.exe Print_Output.o 
+Info: Nothing to build for Print_Output

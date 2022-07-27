@@ -24,4 +24,22 @@
 
 // Create a project for your HOST:
     // File ==> New ==> C/C++ project ==> C manage Build ==> Enter the project name ==> Choose Compiler (MinGW for Windows) (since this settings is for host!) ==> Finish
+    // Right click to project ==> New ==> Source File ==> main.c
+    // Right click to project ==> Build project ==> Generates a .exe file in Binaries
+    // Right click to this .exe file ==> Properties ==> Click to folder icon to go to the directory of the .exe file.
+    // Double click to file to run the file!
+
+// Create a project for your TARGET:
+    // Switch workspace to workingdirectory/target.
+    // File ==> New ==> STM32 Project (wait for IDE to create settings)
+    // Select your board! You can download documents of your product as well!
+    // Enter project name ==> Select use default location ==> C ==> Executable ==> Empty (NOT STM32Cube unless you know how to work STM32CubeMX Software)
+    // Click Finish!
+
+// GET RID OF FPU WARNING WHEN YOU BUILD TARGET PROJECT
+    // right click on the project -->properties -> expand C/C++ build --> Settings --> Tool settings -->MCU settings
+    // Set floating point unit as None 
+    // and Floating point ABI as Software Implemetation!
+    // Apply and close ==> Clean project ==> Build again!
+
 
