@@ -22,6 +22,19 @@ int main()     			// according to c90 and c99 standards main should return int!
 		// main.s is collection of assembly instructions. Higher level language (C) is converted into a little lower level language that is called as assembly language.
 		// main.o; Assembly level mnemonics (mnemonic is an abbreviation for an operation in assembly language) are converted into opcodes (machine codes for instructions)
 
+// FORMAT SPECIFIER IN C:
+	// %d Integer
+	// %f Float
+	// %c Char
+	// %s String
+	// %u Unsigned Integer
+	// %ld Long Integer (el-di)
+	// %x hex format
+	// %o octal format
+	unsigned a = 160;
+	printf("a = %d\n", a);      // shows a = 160(value of a)
+	printf("a = %x\n", a);   // converts a to hex and shows hex equivalent of a
+
 // ESCAPE SECTIONS IN C:
 	/*
 	\t is a horizontal tab (4 white space chars).
