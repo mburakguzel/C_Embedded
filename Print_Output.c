@@ -29,11 +29,20 @@ int main()     			// according to c90 and c99 standards main should return int!
 	// %s String
 	// %u Unsigned Integer
 	// %ld Long Integer (el-di)
+	// %lu Long unsigned Integer (el-yu)
+	// %I64d for long long int in MinGW compiler (ay-64)
+	// %I64u for unsigned long long int in MinGW compiler
+	// %I64X for unsigned long long int in hex format in MinGW compiler
+	// %lld for long long int in linux or mac compilers
+	// %llu for unsigned long long int in linux or mac compilers
 	// %x hex format
 	// %o octal format
+	// %p shows address of a variable as shown below. (Also can see Data_Types.c / Address of a Variable)
 	unsigned a = 160;
 	printf("a = %d\n", a);      // shows a = 160(value of a)
-	printf("a = %x\n", a);   // converts a to hex and shows hex equivalent of a
+	printf("a = %x\n", a);      // converts a to hex and shows hex equivalent of a
+	char mydata = 'A';
+    printf("Address of variable mydata = %p\n", &mydata);
 
 // ESCAPE SECTIONS IN C:
 	/*

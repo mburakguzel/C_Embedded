@@ -144,4 +144,23 @@ int main()
         return 0;
     }
     */
+
+    // ADRESS OF A VARIABLE AND TYPECASTING 
+    // Putting an ampersand operator before the variable, shows us its location address on our memory.
+        // Example &mydata
+    // This address is also called as a pointer, since it is pointing a data!
+    // /*
+    char mydata ='A';
+    printf("Address of variable mydata = %p\n", &mydata);
+    // We can also save this address in a variable:
+    // unsigned long long int addressofmydata = &mydata; // Although, unsigned long long int allocates 8 bytes as pointers do, this causes a warning since we are trying to save a pointer data type to int!
+    // Using unside long can cause another warning, because in MinGW compiler unsigned long allocates 4 bytes!
+    // To solve this issue, we need to use type casting (converting the data type!)
+    unsigned long long int addressofmydata = (unsigned long long int)&mydata; // here we convert pointer to unsigned long int before assigning it to a unsigned long int variable!
+    printf("Address of variable mydata = %I64u\n", addressofmydata); // Used I64u since this is a unsigned long long int
+    printf("Address of variable mydata = %I64X\n", addressofmydata); // Used I64X to convert the address in hex format. Only prints 3 bytes since other bytes are actually zero. 
+    // */
+
+    // Address size is 8 bytes, since my machine is a 64 bits machine. It would be 4 bytes for 32 bits machine and 2 bytes for 16bits machine!
+    // Address size is compiler and hardware-specific. For ARM cortex Mx based STM32 Microcontrollers, the pointer size is 4 bytes.
 }
