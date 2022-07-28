@@ -38,11 +38,17 @@ int main()     			// according to c90 and c99 standards main should return int!
 	// %x hex format
 	// %o octal format
 	// %p shows address of a variable as shown below. (Also can see Data_Types.c / Address of a Variable)
-	unsigned a = 160;
-	printf("a = %d\n", a);      // shows a = 160(value of a)
-	printf("a = %x\n", a);      // converts a to hex and shows hex equivalent of a
+	unsigned a1 = 160;
+	unsigned a2 = 160;
+	printf("a1 = %d\n", a1);      // shows a = 160(value of a)
+	printf("a1 = %x\n", a1);      // converts a to hex and shows hex equivalent of a
+	// One print can print multiple variables:
+	printf("a1 = %d, a2 = %d\n", a1, a2); 
+	// Print address of avariable:
+	printf("Address of variable mydata = %p\n", &mydata);
 	char mydata = 'A';
     printf("Address of variable mydata = %p\n", &mydata);
+
 
 // ESCAPE SECTIONS IN C:
 	/*

@@ -163,4 +163,15 @@ int main()
 
     // Address size is 8 bytes, since my machine is a 64 bits machine. It would be 4 bytes for 32 bits machine and 2 bytes for 16bits machine!
     // Address size is compiler and hardware-specific. For ARM cortex Mx based STM32 Microcontrollers, the pointer size is 4 bytes.
+
+    // ASCII CODES:
+    // ASCII refers to The American Standard Code for Information Interchange
+    // By using ASCII standard, you can encode 128 different chars.
+    // To encode a ASCII character, you need 7 bits! You can use char type!
+    // Check ASCII table to see which code refers to a char!
+    // For machienes everything is numbers, it stores 'apple' with their ASCII codes in its memory.
+    char a1 = 65;
+    char a1 = 'A'; // These are both same since A's ASCII code is 65.
+    printf("a1 = %c\n", a1); // prints A
+    printf("a1 = %d\n", a1); // prints 65, because A is converted to integer!
 }
