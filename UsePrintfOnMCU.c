@@ -87,4 +87,25 @@ void ITM_SendChar(uint8_t ch)
     // If after we run the code and terminate it via the button at the bottom side of the IDE, we try to debg again this causes an error.
     // Switch to debugging perspective  manually, right click to <terminated... ==> terminate and remove ==> go back to c/c++ perspective and debug your code again!
 
+    // HOW BUILD PROCESS WORKS ON MCUs
+    // Build process can be divided into three stages:
+        // Preprocessing: source file will be preprocessed using preprocessor engine of the compiler. This produces a .i file for every .c file.
+            // This is the stage where the #include files will be resolved and all the C macros will be resolved.
+        // Compilation stage
+            // Parsing (Parse: incelemek, cozumlemek gramer olarak) parser engine checks .i files to find out if there is any syntax error.
+            // If everything is fine, the code is converted into .s file using another engine of the compiler called code generator. That means .i will be converted to .s
+                // This is where higher level code such as C, converted into lower level language such as assembly language.
+                // That means for every C statement you have written, the equivalent mnemonics will be created in the .s. (mnemonics are rom ARM Cortex instruction set architecture)
+            // The assembler engine of the compiler converts mnemonics into machine codes (just numbers). This process generates .o file also called as relocatable object files.
+                // For every .c file, there will be a .o file created by assembler. If you have 5 .c file, 5 .o file will be created.
+        // Linking stage will be invoked here!        
+            // Multiple relocatable object files will be combined into one executable file. The linker will merge all .o files (machine codes) into one file. 
+            // An executable will be generated. In our case, format of the final executable file will be .elf (eld refers to executable and link format).
+                // The GCC based compilers will actually generate executable file of .elf.
+            // Post processing of the executabel (optional!). We can do post processing on that .elf file using tools such as object copy and other tools to produce various other files like .bin, .hex, etc.
+
+    // To see all this created files: right click to project ==> properties ==> resource ==> click icon at the end of the location ==> this will take you to the folder where this project is placed ==> Open folder with name Debug3
+    // .o file can be found under Src folder.
+    // .i and .s files are not there, because compiler generates them internally. To make compiler store them right click to project ==> properties ==> Expand C/C++ Build ==> Settings ==> Click miscellaneous under MCU GCC Compiler ==> Click icon (a paper with green arrow on it) ==> type -save-temps ==> press ok ==> apply ==> rebuild project
+
 }
