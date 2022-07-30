@@ -76,3 +76,15 @@
 // You can see it calls main under LoopFillZerobss routine. Before it you can also see it calls C standard library since we included it.
 
 
+// DISASSEMBLE THE CODE
+// Translate a program from machine code into a higher-level programming language.
+// We have a toll called object dump, we take that tool and we run that on the executable file that we generated (.elf file). We can get back the assembly instructions generated for the program.
+// IDE also does this by using this objdump tool internally.
+// Go to debug mode ==> window ==> show view ==> Disassembly. These are the instructions generated for our code. All these are ARN isntructions or Thumb-2 (Instruction set architecture (ISA)) instructions of ARM instruction set.
+// If you can not see the opcode (machine code) click right and select show opcodes.
+// If you click the home Icon, you will get the curosr in the code.
+// You can also use istruction stepping mode (by clicking the i==> icon on IDE), this allows you to rund the code diassembly code step by step (one by one).
+
+// To check this dissambly code in cmd; type "arm-none-eabi-objdump.exe" use argument -d which is disassemble: so you should use below command:
+// "arm-none-eabi-objdump.exe -d projectname.elf" in the projects directory (in Debug folder).
+// Our main code is under <main>

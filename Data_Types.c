@@ -174,4 +174,27 @@ int main()
     char a1 = 'A'; // These are both same since A's ASCII code is 65.
     printf("a1 = %c\n", a1); // prints A
     printf("a1 = %d\n", a1); // prints 65, because A is converted to integer!
+
+// MANIPULATE DECIMAL NUMBERS IN C (FLOAT AND DOUBLE)
+    // Too small or too big numbers or numbers with fractional part (decimal number) are represented by using floating-point representation data types such as float and double.
+    // IEEE 574 floating point standard are used to store and modify floating point formats. This is the format follwed by all modern MCUs and PCs.
+    // Imagine a really big or small number, storing it with its binary equavalent cause waste of memory. IEE574 standard stores only mantissa (significand) and exponent.
+    // +7.432x10^48 ==> +7.432 is the mentissa, 48 is the exponent. The number will be approximated and saved in the memory.
+    // There are two formats to store this numbers:
+        // Single precision (float): 32 bits representation. 23 bit for significan, 8 bits for exponent, 1 bit for sign.
+        // Double precision (double): 64 bits representation. 52 bit for significan, 11 bits for exponent, 1 bit for sign. Does higher level approximation.
+    // Format specifiers for these data types:
+        // %lf double
+        // %f float
+        // %e and %le for  real numbers in scientific notation
+        // %0.9f float prints 9 digits after decimal point. However, after 6 it is not accurate since float stores 6 digits at most.
+	    // %0.14lf double prints 14 digits after decimal point.
+        // %e and %le for real numbers in scientific notation // e.g 4.578977e+001
+	    // %0.2e and %0.2le for real numbers in scientific notation // e.g 45.8e+001
+    // All constants with a decimal point are considered as double by default.
+    // Float 4 bytes / precision up to 6 decimal places
+    // Double 8 bytes / precision up to 15 decimal places
+
+    float chargeE = -1.602176662e-19;
+
 }

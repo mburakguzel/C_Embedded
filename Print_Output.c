@@ -38,6 +38,12 @@ int main()     			// according to c90 and c99 standards main should return int!
 	// %x hex format
 	// %o octal format
 	// %p shows address of a variable as shown below. (Also can see Data_Types.c / Address of a Variable)
+    // %lf double
+    // %f float
+	// %0.9f float prints 9 digits after decimal point. However, after 6 it is not accurate since float stores 6 digits at most.
+	// %0.14lf double prints 14 digits after decimal point.
+    // %e and %le for real numbers in scientific notation // e.g 4.578977e+001
+	// %0.2e and %0.2le for real numbers in scientific notation // e.g 45.8e+001
 	unsigned a1 = 160;
 	unsigned a2 = 160;
 	printf("a1 = %d\n", a1);      // shows a = 160(value of a)
