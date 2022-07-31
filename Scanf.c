@@ -1,12 +1,12 @@
 /*
- * Print_Output.c
+ * Scanf.c
  *
  *  Created on: 31 jul. 2022
  *      Author: nlbguz
  */
 
 # include <stdio.h>   
-# include <stdlib.h>	
+	
 
 int main()     			
 {
