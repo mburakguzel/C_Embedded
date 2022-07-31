@@ -6,3 +6,6 @@
 // In tool settings ==> MCU Post Build outputs:
     // If you want to generate binary file or hex file or any other extension, then you can do so by selecting these options.
 // In tool settings ==> MCU GCC Compiler: GNU11 is an extension to ISO-C11 standard. Use this one! Can also switch to pure ISO standard.
+
+// To exclude a source file from build on STM32CubeIDE:
+    // Right click to source file ==> Click C/C++ Build ==> Check the box "Exclude resource from build"

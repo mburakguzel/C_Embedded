@@ -197,4 +197,8 @@ int main()
 
     float chargeE = -1.602176662e-19;
 
+    // MULTIPLE INPUTS:
+    double b1=0, b2 = 90;
+    printf("%lf %lf", b1, b2);
+
 }

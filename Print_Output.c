@@ -11,7 +11,9 @@ int main()     			// according to c90 and c99 standards main should return int!
 {
 	printf("Hello World!\n");         // \(back slash) is called escape character.
 	printf("Today is a great day!\n");
-
+	// It might happen that you can not see your message on the console of some IDEs. THis is because each IDE uses different console. In order to see your message you can use below command:
+	fflush(stdout);    // Normally when you print something to console it goes to your softwares output buffer first and then goes to the console. By using this command you are sending the buffer to console.
+	// We needed this fflush on Eclipse`s console. However, it printf works fine with VSCs or windows`console (cmd).
 	printf("Hello World! \r");
 	printf("Bye !\n");                    // Output should be "Bye ! World!" becouse \r move cursor to beginning of the line and overwrite. However, it did not happen in STM32CubeIDE. Output was same with the above code!
 										  // It worked in VSC!
@@ -54,7 +56,7 @@ int main()     			// according to c90 and c99 standards main should return int!
 	printf("Address of variable mydata = %p\n", &mydata);
 	char mydata = 'A';
     printf("Address of variable mydata = %p\n", &mydata);
-
+	// If you print a char with the int format specifier, it will show the ASCII code!
 
 // ESCAPE SECTIONS IN C:
 	/*
