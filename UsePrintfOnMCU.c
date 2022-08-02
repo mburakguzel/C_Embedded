@@ -108,4 +108,29 @@ void ITM_SendChar(uint8_t ch)
     // .o file can be found under Src folder.
     // .i and .s files are not there, because compiler generates them internally. To make compiler store them right click to project ==> properties ==> Expand C/C++ Build ==> Settings ==> Click miscellaneous under MCU GCC Compiler ==> Click icon (a paper with green arrow on it) ==> type -save-temps ==> press ok ==> apply ==> rebuild project
 
+    // In STM32Fx based MCUs each port has 16 pins where you can connect external peripherals (LED, Display, button, bluetooth receiver, external memory (e.g EEPROM), Joy stick, keypad etc.) (Video112)
+    // GPIO stands for general pupose IO. We use those port`s pins for GPIOs. GPIO also has set of registers which are used to control pin's mode, state and other fuctionalities.
+    // So, MCU should also be able reach and modify these registers. 
+    // These registers can be accessed by using memory addresses, hence you can also say that this peripheral registers are memory mapped.
+    // I/O pins are controlled using peripheral registers which are mapped on to processor addressable memory.
+    // In Arm Cortex MCUs, processor (CPU) reaches all peripherals (data memory, code memory, GPIOD, Timers, ADC, I2C) via system(central) bus (AHB - Advanced High Performance Bus). 
+    // This Bus comprises(icermek, kapsamak) of 2 channels: 32 bit address channel (which means you can put 2^32 addresses (4 gigabyte) on this bus in order to target different peripherals) and 32 bit data channel.
+    // Peripherals are controlled by their own set of registers, and a register is addressed by its unique address.
+    // Processor can put address ranging from 0x0000_0000 to 0x_FFFF_FFFF on the address bus.
+    // When the processor (address generation unit of processor) put these memory locations to address bus, the address bus will be targeting the code memory of the microcontroller.
+    // Each peripheral has its memory range which is shown in memory map of ARM Cortex Mx processor. This is fixed for all ARM Cortex Mx processors, and software must be designed according to this.
+    // This memory map can be found in MCU's reference manual. Search for memory map in contents! (Section 2)
+    // It shows first(base) abd last address of each peripheral.
+
+    // Peripheral registers:
+        // All peripheral registers in STM32 MCU are of 32 bits wide.
+        // Different peripherals has different number of peripherals.
+        // GPIO peripheral registers: (There are ten but important ones ae given below)
+            // 1) GPIOD port mode register // used for determine the port mode I or O! (GPIOD) since we are checking GPIO-D. It can be GPIOA or GPIOB etc. 
+            // 2) GPIOD port output type register // used for determine the type of output
+            // 3) GPIOD port pull-up/pull-down registers // used for determine the pert mode I or O! 
+            // 4) GPIOD port input data registers // used for reading data from Input! 
+            // 5) GPIOD port output data registers // used for wrighting data to Output! 
+    // The first register that you find in the address range (given in reference manual) of GPIOD peripheral register is GPIO mode register.
+            
 }

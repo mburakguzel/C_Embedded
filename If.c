@@ -1,5 +1,5 @@
 /*
- * Pointers.c
+ * If.c
  *
  *  Created on: 02 Aug. 2022
  *      Author: nlbguz
