@@ -42,7 +42,17 @@ int main()
     // Ternary Operators: Requires three operands. 
     // Conditional Operators:
         // ?:
+    // CONDITIONAL OPERATOR
 
+        uint32_t a4 = (5 + 4) ? (9 - 4) : 99;   // first checks if (5 + 4) is true if yes a4 = (9-4)
+                                                                                //if not a4 = 99   
+        uint32_t a5 = (5 - 5) ? (9 - 4) : 99;   // first checks if (5 - 5) is true if yes a4 = (9-4)
+                                                                                  //if not a4 = 99 
+                                                
+        printf("a4 = %d\n", a4);
+        printf("a4 = %d\n", a5);
+
+        
     // To see the precedence(oncelik) of the operators, check internet. However, using paranthesis is also okay. You do not need to know precedence.
     // * and / have precedence, then associatiativity comes in place, it goes from left tot right. Whatever comes first will be processed first! 
 }

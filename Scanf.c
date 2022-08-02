@@ -25,6 +25,23 @@ int main()
     int a2 = 0;
     int a3 = 0;
 
+    // Assume we want the user to enter an integer but user entered a float, our program crashes. Below is the solution, Get data as float and compare it with an int.
+    int n1;
+    float num1;
+    printf("Enter an integer: "); 
+    scanf("%f", &num1);
+    n1 = num1;
+    if (n1 == num1)  // use this statement to compare num1 and n1 if they are same, it means user entered an integer, if not it means user entered a float.
+
+// Assume we want the user to enter an integer but user entered a char, In this case scanf command would return 0!! So below solution can be used to solve this problem!
+    float num1;
+    printf("Enter an integer: "); 
+    if ((scanf("%f", &num1)) == 0){
+        printf("Invalid input!")
+        return 0;     // returns our main to 0 to finalize program!
+    }
+
+
     printf("Enter a number: \n");   // and here it skips this part because of getchar function above, strange!
     scanf("%d", &a1);
     printf("Enter a number: \n");
