@@ -69,6 +69,32 @@ int main()
                     //           A ^ B = 0 0 0 0 0 0 0 1   Continues like this!
     // First bit of a bite is least significant bit, last bit of a byte is most significant bit.
 
+    // Bitwise shift operators:
+        // operan1 >> operand2 // bits of the 1st operand will be right shifted by the amount decided b the 2nd operand. Example:
+        char a6 = 111;        //                  a7 = 0 1 1 0 1 1 1 1 = 111 =  2^6 + 2^5 + 2^3 + 2^2 + 2^1 + 2^0
+        char a7 = a6 >> 4;    // first shift: a6 >> 1  0 0 1 1 0 1 1 1   a >> 4 means, a will be shifted 4 times!
+                             // second shift: a6 >> 2  0 0 0 1 1 0 1 1 
+                             // third shift:  a6 >> 3  0 0 0 0 1 1 0 1
+                             // fourth shift: a6 >> 3  0 0 0 0 0 1 1 0
+        // Some process with left shift <<
+        // When left shif is implemented the value will be incresed (value will be multiplied by 2 for each shift) while in right shift value will decrease (value will be devided by 2 for each shift)!
+        // Bitwise shift operators are very ,uch helpful in bit masking of data along with other bitwise operators.
+        // Mostly used for setting or clearing of bits. Example: set 4th bit of given data:
+            // First method use a mask value with bitwise or
+            // Second method: Take number 1 (0 0 0 0 0 0 0 1) and left shift it 4 times! This is the recommended method 0 0 0 1 0 0 0 0 = 0 0 0 0 0 0 0 1 << 4
+        // Example clear 4th bit:
+            // First method: Use & operator with a mask!
+            // Second method: Take number 1 (0 0 0 0 0 0 0 1), shift 4 times and use bitwise and and not operators to clear 4th bit: data = data & ~(1 << 4). Use this one!
+        // Bit extraction: Example: Extract bit positions from 9th to 14th in a given data and save it in to another variable.
+            // Lets say we have data 1 0 1 1 0 1 0 0 0 0 0 1 0 0 0 0 = 0xB410 (each digit represents 4 bits)
+            // The bits from 9 to 14 will be extracted (0 1 0 1 1 0)
+            // Shift the identified portion to right hand side until it touches the least significant bit(0th bit)
+            // Mask the value with bitwise and& to extract only 6 bits (0 to 5) and then save it into another variable.
+            uint16_t Data = 0xB410;
+            uint8_t output;
+            output = (uint8_t) ((Data >> 9) & 0x003F);
+
+
     // Assignment Operators:
         // =, +=, -=, *=, /= , %=
 
@@ -128,6 +154,8 @@ int main()
         // Find the GPIO port output data registers in GPIO registers section 6 of reference manual
         // Only sixteen bit are implemented since there are only 16 pins. 0th port controls 0th pin. Find offset.
         // Add this offset to the base address of GPIOD (in the reference manual)
+
+    // Watch Video 120 again and run the code on your MCU!
 
 
 }
