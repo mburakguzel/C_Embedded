@@ -1,5 +1,5 @@
 /*
- * Scanf.c
+ * While.c
  *
  *  Created on: 03 Aug. 2022
  *      Author: nlbguz
@@ -32,5 +32,7 @@ int main(void)
     do{
 		printf("i = %d\n", i++);
 	}while(i < 3);
-    // Do-while loop is used a lot to write multiline C macros in a header file.
+    // Do-while loop is used a lot to write multiline C macros in a header file. 
+
+    // Watch Video130 again and try to write the code!!
 }

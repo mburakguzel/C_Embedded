@@ -5,7 +5,8 @@
  *      Author: nlbguz
  */
 
-# include <stdio.h>   	
+# include <stdio.h>   
+# include <stdint.h>   	
 int main()     			
 {
     // Integer data types: represent whole numbers
@@ -171,7 +172,7 @@ int main()
     // Check ASCII table to see which code refers to a char!
     // For machienes everything is numbers, it stores 'apple' with their ASCII codes in its memory.
     char a1 = 65;
-    char a1 = 'A'; // These are both same since A's ASCII code is 65.
+    // char a1 = 'A'; // These are both same since A's ASCII code is 65.
     printf("a1 = %c\n", a1); // prints A
     printf("a1 = %d\n", a1); // prints 65, because A is converted to integer!
 
@@ -200,5 +201,33 @@ int main()
     // MULTIPLE INPUTS:
     double b1=0, b2 = 90;
     printf("%lf %lf", b1, b2);
+
+    // TYPE QUALIFIERS IN C
+    // There are two time qualifiers (niteleyici (niteleme sifati), a word or phrase, especially an adjective, used to attribute a quality to another word(noun).) in C:
+        // 1) const: used to enforce read-only feature on variables. Can not be changed after initialization. 
+            uint8_t const data1 = 10;   // this is preferred!
+            // const unit8_t data1 = 10;  // also works
+            // data1 = 20; // causes compile error since data1 is read-only!
+            // You can still modify the content of the variable by using its address (pointer)!
+            uint8_t *ptr = (uint8_t*)&data1;
+            *ptr = 50;   // no error!
+            // Const values are also stored in RAM(data memory) as non-const variables are.
+            // All global const variables are stored in ROM or Flash (code memory). This also depends on linker script rules and the hardware on which code runs.
+            // For STM32 MCUs, all global const variables are stored in FLASH memory. So, when you try to modify the const varable using its address, operation has no effect. Because flash memory of the microcontroller is write-protected.
+            // Modifying global const by using pointer causes crash (on PC) since they are stored in read only memory (flash (code memory))!! On STM32 program will not crash but not be executed.
+            // Const data modifiable pointer:
+                uint8_t const *pData = (uint8_t*) 0x40000000;   // Here the pointer pData is modifiable, but the data pointed by the pData can not be modifiable (read-only).
+                // We can say that pData is a pointer pointing to read-only data. Pointer itself can be modifed but not the data it is pointing to.
+                // Use this for example you want copy the data to somewhere else. Program can not modify the data but copy! Espacially when a function is getting the data from user!
+            // Modifiable data, const pointer:
+                uint8_t *const pData1 = (uint8_t*) 0x40000000;   // Here the pointer pData is const, but the data pointed by the pData1 can be modifiable.
+                // Used especially when a function gets the data from another function.
+            // Const data, const pointer:
+                uint8_t const *const pData1 = (uint8_t*) 0x40000000;   // Both const! Both read only.
+                // Used when we want to read data from the status register of HW. Status register should not be modified otherwise cause the system to fail.
+
+
+        // 2) volatile (ucucu)
+    // Applying these qualifiers to a variable decleration is called qualifying the decleration.
 
 }
