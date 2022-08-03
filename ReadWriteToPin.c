@@ -1,4 +1,5 @@
     
+    // HOW TO WRITE TO OUTPUT PIN:
     // In STM32Fx based MCUs each port has 16 pins where you can connect external peripherals (LED, Display, button, bluetooth receiver, external memory (e.g EEPROM), Joy stick, keypad etc.) (Video112)
     // GPIO stands for general pupose IO. We use those port`s pins for GPIOs. GPIO also has set of registers which are used to control pin's mode, state and other fuctionalities.
     // So, MCU should also be able reach and modify these registers. 
@@ -65,3 +66,10 @@
         // Add this offset to the base address of GPIOD (in the reference manual)
 
     // Watch Video 120 again and run the code on your MCU!
+
+    // HOW TO READ FROM INPUT PIN: (Check video 143!)
+    // We will read PA0 as an example.
+    // First check if PA0 is a free I/o for your board. Go to Extension connectors in reference manual (section 6.11), find PA0 and check if Free I/O is filled for this pin.
+    // Enable clock for GPIOA, check above explanations to understand how to enable it.
+    // Configue PA0 as input mode. Again check above explanations.
+    // Find register address to read input. Check above explanations! You will get 32 bits data but you only need 1 bit, use masking!

@@ -225,9 +225,39 @@ int main()
             // Const data, const pointer:
                 uint8_t const *const pData1 = (uint8_t*) 0x40000000;   // Both const! Both read only.
                 // Used when we want to read data from the status register of HW. Status register should not be modified otherwise cause the system to fail.
-
-
         // 2) volatile (ucucu)
+            // It telss the compiler that the value of the variable may change at any time with or without the programmer's constent. So, the compiler turns off optimizing the read-write operations on variables which are declared using volatile keyword.
+            uint8_t data1;
+            uint8_t data2;
+
+            data1 = 50;
+
+            data2 = data1;
+            data2 = data1;  // this is not needed since we laready copied the data1 to data2. In order to optimize our code, compiler do not generate machine code for this statement when optimization is set to O1. When optimization is set to O1, compiler generates anyway.
+            // Also valid for unused varables, compiler does not generate a machine code for them to optimize our code.
+            // Being in optimization level1, how can we make our compiler to geenrate machine codes in the above cases. We use volatile keyword! Tell the compiler that do not make optimization on these varables.
+            uint8_t volatile data3;
+            
+
+            // A variable must be declared using a volatile qualifier when there is a possibility of unexpected changes in the varable value.
+            // The unexpected change in the variable may happen from within the code or from outside the code (from HW).
+            // Use volatile when your code is dealing with below scenarios:
+                // Memory-mapped peripheral registers of the MCU.
+                // Multiple tasks accessing global varables(read/write) in an RTOS multithreaded application.
+                // When a global variable is used to share data between the main code and an ISR code.
+            // Case1: Volatile data
+            uint8_t volatile data4;
+            // volatile uint8_t data4;  // also okay
+            
+            // Case2: non-volatile pointer to volatile data. Perfect case of accessing memory-mapped registers.
+            uint8_t volatile *pStatusReg;
+
+            // Case3: Volatile pointer to non-volatile data. Rarely used.
+            uint8_t *volatile pStatusReg;
+
+            // Case4: Volatile pointer to volatile data. Rarely used.
+            uint8_t volatile *volatile pStatusReg;
+    
     // Applying these qualifiers to a variable decleration is called qualifying the decleration.
 
 }
