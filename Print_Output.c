@@ -57,6 +57,8 @@ int main()     			// according to c90 and c99 standards main should return int!
 	char mydata = 'A';
     printf("Address of variable mydata = %p\n", &mydata);
 	// If you print a char with the int format specifier, it will show the ASCII code!
+	char message [] = "Hello";
+	printf("My message is: %s", message);
 
 	printf("a1 = %4d\n",a1);   // This is called width specifier. Now each digit will consume 4 columns in the display in right-aligned fashion! 
 	// Above code is mostly used in loops to make the output look fancy or aligned!
