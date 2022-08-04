@@ -14,15 +14,27 @@
         uint32_t carPrice;
         uint16_t carMaxSpeed;
         float carWeight;
+        // You can not define a member with data type as same struct:
+        // struct CarModel carBMW;   // not allowed!
+        // However, structure types can contain pointers to their own type.
+        struct CarModel *pcarBWM;  // allowed!
+        // Nested structs are also possible.
+        struct 
+        {
+            char data5;
+            int data6;
+        }moreData;
     };
 
-    struct DataSet   // This is how we define structures. Definiton of a structure does not consume any memory, it is just a description or a record.
+    struct DataSet    // This is how we define structures. Definiton of a structure does not consume any memory, it is just a description or a record.
     {                 // This is usually created outside of the function or even in a header file. Best practise is defining in header file!!
         char  data1;
         int   data2;
         char  data3;
         short data4;
     };
+
+    void displayMemberElements(struct Dataset *pData);
 
 int main(void)     			
 {
@@ -105,7 +117,105 @@ int main(void)
         // But aligned data storage also causes losing some meory as shown above.
         // If your resources are really limited, then use packed feature of compiler to store data unaligned.
 
+        /* In order to store unaligned add the below statement at the end of the structure. 
+        struct DataSet   
+        {                 
+            char  data1;
+            int   data2;
+            char  data3;
+            short data4;
+        };__attribute__((packed));
+        
+        */
 
+    //    In assembly code:
+        // STRB ==> store a byte   these commands stores data aligned 
+        // STR  ==> store a word
+
+    // Typedef with syructure:
+    // typedef is used to give an alias name to primitive and user defined data types.
+    // While calling a struct your code, you always need to write struct struct_name ..., however when you use typedef using only struct's name is enough see below codes: 
+
+    struct CarModel   // This is how we define structures. Definiton of a structure does not consume any memory, it is just a description or a record.
+    {                 // This is usually created outside of the function or even in a header file. Best practise is defining in header file!!
+        unsigned int carNumber;
+        uint32_t carPrice;
+        uint16_t carMaxSpeed;
+        float carWeight;
+    };
+    // in main.c
+    // struct CarModel carBMW;
+
+    // with typedef:
+    typedef struct   
+    {                
+        unsigned int carNumber;
+        uint32_t carPrice;
+        uint16_t carMaxSpeed;
+        float carWeight;
+    }CarModel_t;    
+    // in main.c
+    // CarModel_t carBMW;   // alias name for the structure! _t is used for distinguishing enum and type for programmers (so not mendatory!). For enums we use _e!
+    // If you open the MCU's header file, you will see lots of typedef structure.
+
+    // STRUCTURES AND POINTERS:
+    // Let's say we define a pointer with the base address of a struct:
+    // uint8_t *ptr = (uint8_t*)&data;   // ptr has the base address (Address of first byte of the data!)
+
+    // Modify first element of data structure:
+    // *ptr = 0x55;
+
+    // To Modify second element of data structure becomes hustle since, you do not know how many times you need to increment ptr because of the data type of second element is different.
+    // So instead of this define a struct pointer! BURDAN ASAGISI BENDE CALISMADI! VIDEO 161-162-163 TEKRAR IZLE!!!
+    struct DataSet newdata;
+    newdata.data1 = 0x11;
+    newdata.data2 = 0xFFFFEEEE;
+    newdata.data3 = 0x22;
+    newdata.data4 = 0xABCD;
+
+    struct Dataset *pData;  // pData is a pointer variable of type struct DataSet.
+
+    pData = &newdata;   // pData now holds the address structure of data1 element.
+
+    // Change the value of first element data1:
+    pData->data1 = 0x55;   // -> is called dereferencing (arrow) operator when a structure pointer is involved. Use this operator ONLY when structure pointer is involved!
+    // Above statement is actually same with *ptr = 0x55;
+    // We use . operator when a non pointer type variable is involved.
+
+    // To modify second element of struct:
+    pData->data2 = 0x11;  // you do not have to calculate the address of the second element to increment the pointer!
+
+    // Why we need to modify the value of struct's element via pointer. Because most of the time, you will be sending the address of the structure variable to some another function, and that function has to receive your address
+    // and manipulate the member elements. See displayMemberElements function given out of the main(). 
+    */
+
+   displayMemberElements(&data);
+
+    // STRUCTURE BIT FIELDS!    (HEAVILY USED WHEN YOU DEAL WITH NETWORKING ACTIVITIES IN A CODE!)
+    // Also can be used when you know the max value of a struct element. So lets say max amount of speed is 500 you can define speed element with 7 bits which is sufficient to store till 500.
+    // In the previous example we extracted a package with 4 bytes, however we used 10 bytes to extract them. This is waste of memory!
+    // For example we created crc as uint8_t(8 bits) but we only used two bits for crc. In order to prevent this we can use bit fields:
+    // Define the struct: Define all variables with 32 buts since our packed consume 32 bits in total!
+    struct Packet
+    {
+        uint32_t crc        :2;    // we tell compiler that use only two bits for crc
+        uint32_t status     :1;    
+        uint32_t payload   :12;
+        uint32_t bat        :3;
+        uint32_t sensor     :3;
+        uint32_t longAddr   :8;
+        uint32_t shortAddr  :2;
+        uint32_t addrMode   :1;
+        // All these variables will be referring to different bit fields of single uint32_t memory!!!. We reduced the memory consumption.
+    }
    
     return 0;
+}
+
+void displayMemberElements(struct Dataset *pData)
+{
+    printf("data1 = %X\n", pdata->data1);
+    printf("data2 = %X\n", pdata->data2);
+    printf("data3 = %X\n", pdata->data3);
+    printf("data4 = %X\n", pdata->data4);
 }
