@@ -24,7 +24,7 @@ int main(void)
     // uint8_t someData[];             // This will cause error!
 
     int len = 4;
-    uint8_t someData2[len];   // length can change during code execution. This is called VLA (variable lengt array). Introduced with C99 standard. Not possible in C++, array size can not change in C++. 
+    uint8_t someData2[len];   // length can change during code execution. This is called VLA (variable length array). Introduced with C99 standard. Not possible in C++, array size can not change in C++. 
     // To change standard in CubeIDE right click to project ==> properties ==> Expand C/C++ Build ==> Settings ==> Dialect (GCC C Compiler) ==> Language Standard
     // Then go to warnings (GCC C Compiler) ==> Enable Pedantic (-pedantic)
 
