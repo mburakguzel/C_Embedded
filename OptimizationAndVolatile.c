@@ -175,4 +175,4 @@ uint_8 const volatile pReg = (uint8_t*)0x40000000;   // pReg is a const pointer 
 
 // Case of reading from read-only buffer or address which is prone to unexpected change. (For instance: input data register, this is read-only, you need to only read not modify.) In this case use below statement:
 uint8_t const volatile *const pReg = (uint8_t*) 0x40000000;  // The address should not be modified by the programmer, because it is const. But the data at this address may get changed by the data coming from the external world.
-                                                             // So the address can still undergo unexpected change but the programmer should not modify it.
+                                                             // So the address can still undergo unexpected change but the programmer should not modify it, that's why we used const volatile.
