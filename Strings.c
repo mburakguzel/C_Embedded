@@ -92,3 +92,4 @@ int main(void)
 
 }
 
+// DO EXERCISE ON VIDEO 189
